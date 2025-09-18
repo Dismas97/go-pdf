@@ -1,0 +1,48 @@
+#+TITLE: PDFs
+#+AUTHOR: fran
+#+LANGUAGE: es
+#+STARTUP: content indent showeverything
+
+* Como ejecutar
+
+El servidor fue compilado en Golang  version =go1.25.1 X:nodwarf5 linux/amd64=. Deberia funcionar sin problemas en cualquier sistema.
+
+Para compilar el proyecto primero hay que inicializar el modulo con un nombre dado y obtener las diferentes dependencias:
+
+#+begin_src bash
+  go mod init nombre-modulo
+  go get .
+  go build
+#+end_src
+
+Esto va a generar un ejecutable =nombre-modulo=, la carpeta =static= debe estar al mismo nivel que el ejecutable y config.json, también se puede ejecutar sin compilar utilizando =go run server.go=, para despliegue se puede desde simplemente exponer el puerto, como servicio del s.o, virtualizar, etc. con las configuraciones correspondientes de la plataforma (yaml/dockerfile en docker/k8s, .service/bash linux/systemd, .nix nixos, etc)
+
+El servidor sirve la pagina web en "/"
+
+Asume una base de datos en mysql/mariadb ya inicializada con el esquema
+
+#+begin_src sql
+  CREATE TABLE archivo (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    nombre_archivo VARCHAR(255) NOT NULL,
+    ruta VARCHAR(500) NOT NULL,
+    creado TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+#+end_src
+
+* Config ejemplo
+
+Valores por defecto
+#+begin_src json :tangle config.json
+  {
+    "server_port": 4567,
+    "db": "pdfs",
+    "db_port": 3306,
+    "db_host": "127.0.1",
+    "db_usuario": "usuario",
+    "db_contra": "usuario",
+    "destino": "./archivos"
+}
+#+end_src
+

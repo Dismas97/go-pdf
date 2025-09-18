@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="viewport" content="width-device-width,initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>PDFs</title>
+    <link rel="stylesheet" href="estilos.css">
+  </head>
+  <body>
+    <div class="div_principal">
+      <div class="div_padre">
+        <h1>Subir PDF</h1>
+        <div class="div_form">
+          <form id="form-pdf" enctype="multipart/form-data">
+            Nombre: <input type="text" name="nombre" class="input_nombre"><br>
+              Subir PDF: <input type="file" name="archivo"  accept="application/pdf"><br><br>
+            <input type="submit" value="Enviar" class="input_submit">
+          </form>
+        </div>
+      </div>
+    
+      <div class="div_padre" id="div-listar">
+        <h1>PDFs</h1>
+        <div class="div_paginado">
+          <button id="btn-anterior" disabled><</button>
+          <span id="info-pagina">1 de 1</span>
+          <button id="btn-siguiente" disabled>></button>
+        </div>
+        <div id="div-tabla">
+          <table id="tabla-datos">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Archivo</th>
+                <th>Creado</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-body">
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="div_modal_fondo" id="div-modal-fondo">
+      <div class="div_modal">
+        <iframe id="iframe-pdf"></iframe>
+      </div>
+    </div>
+    
+    <script src="app.js"></script>
+  </body>
+</html>
